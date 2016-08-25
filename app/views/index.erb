@@ -1,0 +1,13 @@
+
+<% if !session[:user_id] %>
+
+	<p>Sign up for a new account:</p>
+	<form method="get" action="/users/new">
+		<input type="submit" value="sign up" >
+	</form>
+
+<% else %>
+
+	<h3> Welcome, <%= @user.username %></h3>
+
+<% end %>
