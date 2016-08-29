@@ -1,0 +1,9 @@
+<p>Event: <%= @event.name %></p>
+<p><%= @event.location %></p>
+<p><%= @event.date %></p>
+
+
+<p><a href="/">back to ALL Events</a></p>
+<% if current_user %>
+	<p><a href="/users/<%= @current_user.id %>">back to YOUR Events</a></p>
+<% end %>

@@ -42,12 +42,12 @@ post '/users/new' do
 		erb :'/users/new'
 	#check password validity
 	elsif params[:password].length >=6
-		@new_user = User.create(username: params[:username], password: params[:password])
-		if @new_user.save
-			session[:user_id] = @new_user.id
+		@user = User.create(username: params[:username], password: params[:password])
+		if @user.save
+			session[:user_id] = @user.id
 	    redirect "/"
     else
-    	@errors = @new_user.errors.full_messages
+    	@errors = @user.errors.full_messages
 			erb :'/users/new'
     end
 	else #password failed, less than 6

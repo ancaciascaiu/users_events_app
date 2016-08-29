@@ -23,7 +23,7 @@
       <nav class="clearfix mar-b-1">
         <ul class="no-bullets no-margin no-padding right">
 
-          <% if !session[:user_id] %>
+          <% if !current_user %>
 
             <li class="pipe-separate t-light-green left">
               <form method="get" action="/login"><input type="submit" value="login">
@@ -38,7 +38,7 @@
 
           <% else %>
             <li class="pipe-separate t-light-green left">
-              <form method="get" action="/users/<%= @user.id %>">
+              <form method="get" action="/users/<%= @current_user.id %>">
               <input type="submit" value="go to profile">
               </form>
             </li>
@@ -55,7 +55,7 @@
       </nav>
 
       <div class="logo-container">
-        <h1>DBC Auction!</h1>
+        <h1>Chicago Events</h1>
       </div>
     </div>
   </header>

@@ -7,6 +7,8 @@ class User < ActiveRecord::Base
                        :uniqueness => true
   validates :password_hash, :presence => true
 
+  has_many :attendances
+  has_many :events, through: :attendances
 
   def password
 		@password ||= BCrypt::Password.new(password_hash)

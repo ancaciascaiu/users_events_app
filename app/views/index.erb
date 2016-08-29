@@ -1,13 +1,18 @@
 
-<% if !session[:user_id] %>
+<% if !current_user %>
 
-	<p>Sign up for a new account:</p>
+	<p>To be able to sign up for any of our events, Sign Up for a new account:</p>
 	<form method="get" action="/users/new">
 		<input type="submit" value="sign up" >
 	</form>
 
 <% else %>
 
-	<h3> Welcome, <%= @user.username %></h3>
+	<h3> Welcome, <%= @current_user.username %></h3>
 
+<% end %>
+
+<h4> Here are all the available events in Chicago </h4>
+<% @events.each do |event| %>
+	<a href="/events/<%=event.id%>"><p><%= event.name %></p></a>
 <% end %>
