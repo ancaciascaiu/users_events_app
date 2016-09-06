@@ -1,8 +1,14 @@
+<% if current_user.id == session[:user_id] %>
 
-<h3> Hello, <%= @user.username %></h3>
-<p> These are the events you chose to attend:</p>
-<p>Click on each event to find more information!</p>
-<% @user.events.each do |event| %>
-	<p><a href="/events/<%= event.id %>"><%= event.name %></a></p>
+	<h3> Hello, <%= current_user.username %></h3>
+	<p> These are the events you chose to attend:</p>
+	<p>Click on each event to find more information!</p>
+	<% current_user.events.each do |event| %>
+		<p><a href="/events/<%= event.id %>"><%= event.name %></a></p>
+	<% end %>
+
+<% else %>
+
+	<p>You are not authorized to see this page!</p>
+
 <% end %>
-

@@ -9,7 +9,6 @@ get '/login' do
 end
 ### show stuff that belongs to user
 get '/users/:id' do
-	# @items = Item.all
 	@user = User.find(params[:id])
 	erb :'/users/show'
 end

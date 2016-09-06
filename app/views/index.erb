@@ -5,14 +5,29 @@
 	<form method="get" action="/users/new">
 		<input type="submit" value="sign up" >
 	</form>
+	<h4> Here are all the available events in Chicago </h4>
+	<% @events.each do |event| %>
+		<a href="/events/<%=event.id%>"><p><%= event.name %></p></a>
+		
+	<% end %>
 
 <% else %>
 
-	<h3> Welcome, <%= @current_user.username %></h3>
+	<h3> Welcome, <%= current_user.username %></h3>
 
+	<h4> Here are all the available events in Chicago </h4>
+	<% @events.each do |event| %>
+		<a href="/events/<%=event.id%>"><p><%= event.name %></p></a>
+		<% attendance = Attendance.where("user_id= ? and event_id= ?", current_user.id, event.id).to_a %>
+		<% if attendance[0] && attendance[0].event_id == event.id %>
+			<p>Attending</p>
+		<% else %>
+			<form method="POST" action="/events/<%= event.id %>/attendances">
+				<input type="submit" value="Attend this event!">
+			</form>
+		<% end %>
+	<% end %>
 <% end %>
 
-<h4> Here are all the available events in Chicago </h4>
-<% @events.each do |event| %>
-	<a href="/events/<%=event.id%>"><p><%= event.name %></p></a>
-<% end %>
+
+

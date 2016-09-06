@@ -1,0 +1,8 @@
+<form method="POST" action="/events/<%= @event.id %>">
+	<input type="hidden" name="_method" value="PUT">
+	<input type="text" name="event[name]" value="<%= @event.name %>">
+	<input type="text" name="event[location]" value="<%= @event.location %>">
+	<input type="text" name="event[contact_person]" value="<%= @event.contact_person %>">
+	<input type="text" name="event[date]" value="<%= @event.date %>">
+	<input type="submit" value="update event">
+</form>

@@ -1,5 +1,5 @@
 require 'bcrypt'
-
+  
 class User < ActiveRecord::Base
   # include BCrypt
 
@@ -8,7 +8,7 @@ class User < ActiveRecord::Base
   validates :password_hash, :presence => true
 
   has_many :attendances
-  has_many :events, through: :attendances
+  has_many :attended_events, through: :attendances, source: :event #events = attended_events
 
   def password
 		@password ||= BCrypt::Password.new(password_hash)
@@ -28,3 +28,4 @@ class User < ActiveRecord::Base
 	  nil
   end
 end
+  

@@ -2,8 +2,16 @@
 <p><%= @event.location %></p>
 <p><%= @event.date %></p>
 
+<% if current_user && @event.attendances.where("event_id=? and user_id=?", @event.id, current_user.id).first.user_id == current_user.id %>
+	<a href="/events/<%= @event.id %>/edit">edit event</a>
+	<form method="POST" action="/events/<%= @event.id %>">
+		<input type="hidden" name="_method" value="DELETE">
+		<input type="submit" value="delete event">
+	</form>
+<% end %>
 
 <p><a href="/">back to ALL Events</a></p>
+
 <% if current_user %>
 	<p><a href="/users/<%= @current_user.id %>">back to YOUR Events</a></p>
 <% end %>
